@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Vite / production build
+dist/
+dist-ssr/
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Cursor IDE (local plans, not part of the app)
+.cursor/
