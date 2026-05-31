@@ -13,7 +13,8 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 |-----------|--------|
 | M0 — Archive vanilla under `legacy/` | Done |
 | M1 — Vite + React scaffold | Done |
-| M2+ — Domain, UI, styling | Pending |
+| M2 — Constants, levels, matrix/random utils | Done |
+| M3+ — Board engine, reducer, UI, styling | Pending |
 
 ## Running the legacy version
 
