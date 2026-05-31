@@ -15,7 +15,8 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 | M1 — Vite + React scaffold | Done |
 | M2 — Constants, levels, matrix/random utils | Done |
 | M3 — Pure board engine (`board.js`) | Done |
-| M4+ — Rules, reducer, UI, styling | Pending |
+| M4 — Rules (`rules.js`) — victory, display, initial state | Done |
+| M5+ — Reducer, hook, UI, styling | Pending |
 
 ## Running the legacy version
 
