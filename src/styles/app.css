@@ -85,6 +85,19 @@ footer {
   margin-bottom: 0.5em;
 }
 
+.game-controls .action-row {
+  margin: 0.3em 0;
+}
+
+.hints .hint-click {
+  vertical-align: middle;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 /* Dark mode — body + buttons (M9 will toggle .dark-mode on document.body) */
 .dark-mode {
   background-color: rgba(0, 0, 0, 0.925);

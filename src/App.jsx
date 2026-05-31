@@ -1,40 +1,59 @@
 import { Board } from './components/Board.jsx'
+import { GameControls } from './components/GameControls.jsx'
 import { GameOverModal } from './components/GameOverModal.jsx'
+import { StatusBar } from './components/StatusBar.jsx'
 import { useMinesweeper } from './hooks/useMinesweeper.js'
+import { useTheme } from './hooks/useTheme.js'
 
 function App() {
   const {
     board,
     meta,
+    level,
     remainingMines,
     smiley,
     isPlaying,
+    hasStarted,
+    canUndo,
     gameOverMessage,
     actions,
     getCellUiState,
   } = useMinesweeper()
+
+  const { darkModeLabel, toggleTheme } = useTheme()
+
+  const elapsedTime = 0
 
   return (
     <>
       <h1>Minesweeper game</h1>
 
       <div className="controls">
-        <div>
-          Mines: <span className="mines">{remainingMines}</span>
-          {' | '}
-          Time: <span className="time">0</span>
-        </div>
-        <div>
-          Lives: <span className="lives">{' ❤'.repeat(meta.livesCount)}</span>
-        </div>
-        <button
-          type="button"
-          className="smiley"
-          onClick={() => actions.newGame()}
-          aria-label="New game"
-        >
-          {smiley}
-        </button>
+        <GameControls
+          level={level}
+          safeCount={meta.safeCount}
+          hasStarted={hasStarted}
+          megaHintIsUsable={meta.megaHintIsUsable}
+          canUndo={canUndo}
+          smiley={smiley}
+          darkModeLabel={darkModeLabel}
+          onSetLevelBySize={actions.setLevelBySize}
+          onMegaHint={actions.activateMegaHint}
+          onSafeClick={actions.useSafeClick}
+          onUndo={actions.undo}
+          onNewGame={actions.newGame}
+          onToggleDark={toggleTheme}
+        />
+
+        <StatusBar
+          remainingMines={remainingMines}
+          elapsedTime={elapsedTime}
+          livesCount={meta.livesCount}
+          hintsCount={meta.hintsCount}
+          hasStarted={hasStarted}
+          isHintOn={meta.isHintOn}
+          onActivateHint={actions.activateHint}
+        />
       </div>
 
       <GameOverModal message={gameOverMessage} />
