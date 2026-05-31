@@ -1,7 +1,18 @@
+import { Board } from './components/Board.jsx'
+import { GameOverModal } from './components/GameOverModal.jsx'
 import { useMinesweeper } from './hooks/useMinesweeper.js'
 
 function App() {
-  const { meta, remainingMines, smiley, actions } = useMinesweeper()
+  const {
+    board,
+    meta,
+    remainingMines,
+    smiley,
+    isPlaying,
+    gameOverMessage,
+    actions,
+    getCellUiState,
+  } = useMinesweeper()
 
   return (
     <>
@@ -24,12 +35,19 @@ function App() {
         >
           {smiley}
         </button>
-        <p className="board-placeholder">
-          Board and full controls (levels, hints, undo) — next milestone (M7–M8).
-        </p>
       </div>
 
-      <div className="board-container" />
+      <GameOverModal message={gameOverMessage} />
+
+      <div className="board-container">
+        <Board
+          board={board}
+          isPlaying={isPlaying}
+          getCellUiState={getCellUiState}
+          onReveal={actions.revealCell}
+          onToggleMark={actions.toggleMark}
+        />
+      </div>
 
       <footer>Adi Sabban</footer>
     </>

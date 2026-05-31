@@ -19,7 +19,8 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 | M4 — Rules (`rules.js`) — victory, display, initial state | Done |
 | M5 — Reducer (`reducer.js`) + undo / actions | Done |
 | M6 — `useMinesweeper` hook | Done |
-| M7+ — Board UI, controls, styling | Pending |
+| M7 — Board, Cell, GameOver modal | Done |
+| M8+ — Full controls, timer, audio, styling | Pending |
 
 ## Running the legacy version
 
