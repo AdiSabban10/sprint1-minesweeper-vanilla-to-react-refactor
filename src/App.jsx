@@ -2,8 +2,10 @@ import { Board } from './components/Board.jsx'
 import { GameControls } from './components/GameControls.jsx'
 import { GameOverModal } from './components/GameOverModal.jsx'
 import { StatusBar } from './components/StatusBar.jsx'
+import { useGameAudio } from './hooks/useAudio.js'
 import { useMinesweeper } from './hooks/useMinesweeper.js'
 import { useTheme } from './hooks/useTheme.js'
+import { useTimer } from './hooks/useTimer.js'
 
 function App() {
   const {
@@ -21,8 +23,9 @@ function App() {
   } = useMinesweeper()
 
   const { darkModeLabel, toggleTheme } = useTheme()
+  const elapsedTime = useTimer(meta.isTimerRunning, hasStarted)
 
-  const elapsedTime = 0
+  useGameAudio(meta)
 
   return (
     <>

@@ -21,13 +21,14 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 | M6 — `useMinesweeper` hook | Done |
 | M7 — Board, Cell, GameOver modal | Done |
 | M8 — GameControls + StatusBar | Done |
-| M9+ — Timer, audio, polish | Pending |
+| M9 — Timer, audio (`useTimer`, `useAudio`) | Done |
+| M10+ — Hint polish, final styling | Pending |
 
 ## Running the legacy version
 
 Open [`legacy/index.html`](legacy/index.html) in a browser (or serve the `legacy/` folder with any static file server). Paths to `js/` and `css/` are relative inside `legacy/`.
 
-> **Note:** Sound files (`sound/explode.wav`, `sound/victory.wav`) are referenced in code but may need to be added under `legacy/sound/` for audio to work.
+> **Sounds:** Place `explode.wav` and `victory.wav` in [`public/sound/`](public/sound/) (copy from [`legacy/sound/`](legacy/sound/)) for the React app. Legacy uses `legacy/sound/` relative to `legacy/index.html`.
 
 ## Architecture (target)
 
