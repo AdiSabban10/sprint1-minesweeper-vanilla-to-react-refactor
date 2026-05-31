@@ -20,6 +20,8 @@ Open **http://localhost:5173**
 | `npm run dev` | Development server |
 | `npm run build` | Production build → `dist/` |
 | `npm run preview` | Preview production build |
+| `npm test` | Run domain unit tests (Vitest) |
+| `npm run test:watch` | Tests in watch mode |
 
 **Legacy version:** open [`legacy/index.html`](legacy/index.html) in a browser (or serve the `legacy/` folder). Audio files live in [`legacy/sound/`](legacy/sound/); the React app uses copies in [`public/sound/`](public/sound/).
 
@@ -140,8 +142,16 @@ public/sound/       Audio assets for Vite
 | M10 | Hint / mega-hint / safe-click parity |
 | M11 | CSS + dark mode |
 | M12 | This README |
+| M13 | Vitest domain tests + GitHub Actions CI |
 
 Browse with: `git log --oneline`
+
+### Tests
+
+Domain logic is covered by Vitest (no React DOM required):
+
+- [`src/domain/board.test.js`](src/domain/board.test.js) — mines, neighbors, flood fill
+- [`src/domain/reducer.test.js`](src/domain/reducer.test.js) — actions, undo, hint mode, invalid reset payloads
 
 ---
 
