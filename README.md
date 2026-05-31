@@ -4,9 +4,11 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 
 Each milestone maps to a focused git commit, providing a transparent, step-by-step history of the architectural decisions and refactoring process.
 
+**Play online:** [https://sprint1-minesweeper-vanilla-to-reac.vercel.app/](https://sprint1-minesweeper-vanilla-to-reac.vercel.app/)
+
 ---
 
-## Live demo (local)
+## Run locally
 
 ```bash
 npm install
