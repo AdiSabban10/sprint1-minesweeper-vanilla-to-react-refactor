@@ -12,7 +12,7 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 | Milestone | Status |
 |-----------|--------|
 | M0 — Archive vanilla under `legacy/` | Done |
-| M1 — Vite + React scaffold | Pending |
+| M1 — Vite + React scaffold | Done |
 | M2+ — Domain, UI, styling | Pending |
 
 ## Running the legacy version
@@ -32,12 +32,13 @@ legacy/         Original vanilla implementation (reference)
 
 ## Scripts
 
-_Coming in M1 after Vite setup._
+From the project root (React app):
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:5173
 npm run build
+npm run preview  # preview production build
 ```
 
 ## Author
