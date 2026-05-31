@@ -1,0 +1,70 @@
+body {
+    text-align: center;
+    font-family: cursive;
+    background-color: rgba(231, 135, 79, 0.582);
+}
+
+button {
+    background-color: rgba(143, 51, 35, 0.281);
+    border: 0;
+    border-radius: 30%;
+    font-family: cursive;
+    font-size: 0.6em;
+    margin: 0.3em;
+    padding: 0.6em;
+    cursor: pointer;
+}
+
+.smiley {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1.5em;
+}
+
+table {
+    border-radius: 10%;
+    margin: 1.2em auto;
+}
+
+.cell {
+    background-color: rgba(143, 51, 35, 0.568);
+    border-radius: 30%;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.shown {
+    background-color: rgba(224, 142, 127, 0.568);
+}
+
+.marked {
+    background-color: rgba(243, 60, 27, 0.568);
+}
+
+.hint-click {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1.2em;
+    height: 10px;
+    width: 20px;
+}
+
+.hint {
+    background-color: rgba(238, 235, 33, 0.568);
+}
+
+.hide {
+    display: none;
+}
+
+.check {
+    background-color: blue;
+}
+
+.dark-mode {
+    background-color: rgba(0, 0, 0, 0.925);
+    color: rgba(255, 255, 255, 0.925);
+}
+
+.dark {
+    color: rgba(255, 255, 255, 0.925);
+}
