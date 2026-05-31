@@ -32,6 +32,7 @@ import {
  * @property {UndoMetaSnapshot[]} metaHistory
  * @property {string[]} peekCellKeys Temporary reveal for hint / mega-hint (UI clears via CLEAR_PEEK)
  * @property {string | null} safeHighlightKey Cell highlighted by safe-click (no content reveal)
+ * @property {'hint' | 'mega' | null} peekKind Drives peek clear timeout (1s vs 2s)
  */
 
 export const ACTIONS = {
@@ -55,6 +56,7 @@ export function createReducerState(level) {
     metaHistory: [],
     peekCellKeys: [],
     safeHighlightKey: null,
+    peekKind: null,
   }
 }
 
@@ -74,7 +76,13 @@ function pickUndoMeta(meta) {
  * @param {boolean} [recordHistory]
  */
 function commitGame(state, game, recordHistory = true) {
-  const next = { ...state, game, peekCellKeys: [], safeHighlightKey: null }
+  const next = {
+    ...state,
+    game,
+    peekCellKeys: [],
+    safeHighlightKey: null,
+    peekKind: null,
+  }
 
   if (!recordHistory) return next
 
@@ -219,6 +227,7 @@ function handleHintReveal(state, row, col) {
     game: { ...game, board: unmark.board, meta: nextMeta },
     peekCellKeys: getHintPeekKeys(unmark.board, row, col),
     safeHighlightKey: null,
+    peekKind: 'hint',
   }
 }
 
@@ -266,6 +275,7 @@ function handleMegaHintCorner(state, row, col) {
     game: { ...game, board: unmark.board, meta: nextMeta },
     peekCellKeys: getRectPeekKeys(unmark.board, row1, col1, row2, col2),
     safeHighlightKey: null,
+    peekKind: 'mega',
   }
 }
 
@@ -421,7 +431,7 @@ export function gameReducer(state, action) {
     case ACTIONS.USE_SAFE_CLICK: {
       const { game } = state
       const { board, meta } = game
-      if (!meta.isOn || meta.safeCount === 0) return state
+      if (!meta.isOn || !hasGameStarted(meta) || meta.safeCount === 0) return state
 
       const pos = pickRandomPosition(getSafePositions(board))
       if (!pos) return state
@@ -442,6 +452,7 @@ export function gameReducer(state, action) {
         ...state,
         peekCellKeys: [],
         safeHighlightKey: null,
+        peekKind: null,
       }
 
     case ACTIONS.UNDO: {
@@ -462,6 +473,7 @@ export function gameReducer(state, action) {
         metaHistory: metaHistory.slice(0, -1),
         peekCellKeys: [],
         safeHighlightKey: null,
+        peekKind: null,
       }
     }
 
@@ -502,4 +514,16 @@ export function isCellPeekActive(state, row, col) {
  */
 export function isCellSafeHighlight(state, row, col) {
   return state.safeHighlightKey === cellKey(row, col)
+}
+
+/**
+ * First corner selected during mega-hint (before rectangle peek).
+ * @param {ReducerState} state
+ * @param {number} row
+ * @param {number} col
+ */
+export function isMegaHintCorner(state, row, col) {
+  return state.game.meta.megaHintLocations.some(
+    (pos) => pos.row === row && pos.col === col,
+  )
 }

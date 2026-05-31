@@ -22,7 +22,8 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 | M7 — Board, Cell, GameOver modal | Done |
 | M8 — GameControls + StatusBar | Done |
 | M9 — Timer, audio (`useTimer`, `useAudio`) | Done |
-| M10+ — Hint polish, final styling | Pending |
+| M10 — Hint / mega-hint / safe-click parity | Done |
+| M11+ — Final styling, README | Pending |
 
 ## Running the legacy version
 

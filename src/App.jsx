@@ -6,6 +6,7 @@ import { useGameAudio } from './hooks/useAudio.js'
 import { useMinesweeper } from './hooks/useMinesweeper.js'
 import { useTheme } from './hooks/useTheme.js'
 import { useTimer } from './hooks/useTimer.js'
+import { getModeHintMessage } from './utils/modeHint.js'
 
 function App() {
   const {
@@ -27,6 +28,8 @@ function App() {
 
   useGameAudio(meta)
 
+  const modeHintMessage = getModeHintMessage(meta)
+
   return (
     <>
       <h1>Minesweeper game</h1>
@@ -37,6 +40,7 @@ function App() {
           safeCount={meta.safeCount}
           hasStarted={hasStarted}
           megaHintIsUsable={meta.megaHintIsUsable}
+          isMegaHintOn={meta.isMegaHintOn}
           canUndo={canUndo}
           smiley={smiley}
           darkModeLabel={darkModeLabel}
@@ -57,6 +61,12 @@ function App() {
           isHintOn={meta.isHintOn}
           onActivateHint={actions.activateHint}
         />
+
+        {modeHintMessage && (
+          <p className="mode-hint" role="status">
+            {modeHintMessage}
+          </p>
+        )}
       </div>
 
       <GameOverModal message={gameOverMessage} />

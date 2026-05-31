@@ -8,6 +8,7 @@ import { getCellDisplay } from '../domain/rules.js'
  * @param {boolean} props.isPlaying
  * @param {boolean} props.isPeek
  * @param {boolean} props.isSafeHighlight
+ * @param {boolean} props.isMegaCorner
  * @param {(row: number, col: number) => void} props.onReveal
  * @param {(row: number, col: number) => void} props.onToggleMark
  */
@@ -18,6 +19,7 @@ export function Cell({
   isPlaying,
   isPeek,
   isSafeHighlight,
+  isMegaCorner,
   onReveal,
   onToggleMark,
 }) {
@@ -29,7 +31,7 @@ export function Cell({
   const classNames = ['cell']
   if (cell.isShown) classNames.push('shown')
   if (cell.isMarked) classNames.push('marked')
-  if (isPeek || isSafeHighlight) classNames.push('hint')
+  if (isPeek || isSafeHighlight || isMegaCorner) classNames.push('hint')
 
   function handleContextMenu(event) {
     event.preventDefault()

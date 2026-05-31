@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useReducer } from 'react'
+import { useCallback, useMemo, useReducer } from 'react'
 import { LEVELS } from '../domain/levels.js'
 import {
   createReducerState,
@@ -6,7 +6,9 @@ import {
   gameReducer,
   isCellPeekActive,
   isCellSafeHighlight,
+  isMegaHintCorner,
 } from '../domain/reducer.js'
+import { usePeekClear } from './usePeekClear.js'
 import {
   getGameOverMessage,
   getRemainingMinesCount,
@@ -61,23 +63,12 @@ export function useMinesweeper(initialLevel = LEVELS.beginner) {
     (row, col) => ({
       isPeek: isCellPeekActive(state, row, col),
       isSafeHighlight: isCellSafeHighlight(state, row, col),
+      isMegaCorner: isMegaHintCorner(state, row, col),
     }),
     [state],
   )
 
-  // Legacy used setTimeout on DOM; clear peek / safe highlight after a delay
-  useEffect(() => {
-    const hasPeek = state.peekCellKeys.length > 0
-    const hasSafe = state.safeHighlightKey != null
-    if (!hasPeek && !hasSafe) return
-
-    const delayMs = hasPeek && !hasSafe ? 1000 : 2000
-    const timerId = setTimeout(() => {
-      dispatch(gameActions.clearPeek())
-    }, delayMs)
-
-    return () => clearTimeout(timerId)
-  }, [state.peekCellKeys, state.safeHighlightKey])
+  usePeekClear(state, dispatch)
 
   return {
     /** Full reducer state (game + undo stacks + peek keys) */

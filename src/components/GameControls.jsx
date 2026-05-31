@@ -6,6 +6,7 @@ import { LEVEL_LIST } from '../domain/levels.js'
  * @param {number} props.safeCount
  * @param {boolean} props.hasStarted
  * @param {boolean} props.megaHintIsUsable
+ * @param {boolean} props.isMegaHintOn
  * @param {boolean} props.canUndo
  * @param {string} props.smiley
  * @param {string} props.darkModeLabel
@@ -21,6 +22,7 @@ export function GameControls({
   safeCount,
   hasStarted,
   megaHintIsUsable,
+  isMegaHintOn,
   canUndo,
   smiley,
   darkModeLabel,
@@ -54,9 +56,10 @@ export function GameControls({
       <div className="action-row">
         <button
           type="button"
-          className="btn"
+          className={`btn${isMegaHintOn ? ' active' : ''}`}
           disabled={megaDisabled}
           onClick={onMegaHint}
+          aria-pressed={isMegaHintOn}
         >
           Mega Hint
         </button>

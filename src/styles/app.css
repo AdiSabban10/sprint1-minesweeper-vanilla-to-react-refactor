@@ -98,6 +98,28 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.btn.active {
+  outline: 2px solid rgba(238, 235, 33, 0.9);
+  outline-offset: 2px;
+}
+
+.hints-armed .hint-click {
+  outline: 2px solid rgba(238, 235, 33, 0.9);
+}
+
+.mode-hint {
+  font-size: 0.9em;
+  max-width: 26rem;
+  margin: 0.4em auto 0.6em;
+  padding: 0.35em 0.6em;
+  background-color: rgba(238, 235, 33, 0.35);
+  border-radius: 0.5em;
+}
+
+.dark-mode .mode-hint {
+  background-color: rgba(238, 235, 33, 0.2);
+}
+
 /* Dark mode — body + buttons (M9 will toggle .dark-mode on document.body) */
 .dark-mode {
   background-color: rgba(0, 0, 0, 0.925);

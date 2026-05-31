@@ -32,7 +32,7 @@ export function StatusBar({
         Lives: <span className="lives">{' ❤'.repeat(livesCount)}</span>
         {' | '}
         Hints:{' '}
-        <span className="hints">
+        <span className={`hints${isHintOn ? ' hints-armed' : ''}`}>
           {Array.from({ length: hintsCount }, (_, index) => (
             <button
               key={index}
