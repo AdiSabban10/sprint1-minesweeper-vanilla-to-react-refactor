@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react'
-import { LEVELS } from '../domain/levels.js'
+import { isLevelConfig, LEVELS } from '../domain/levels.js'
 import {
   createReducerState,
   gameActions,
@@ -36,7 +36,11 @@ export function useMinesweeper(initialLevel = LEVELS.beginner) {
   const actions = useMemo(
     () => ({
       newGame: (levelConfig) =>
-        dispatch(gameActions.newGame(levelConfig ?? game.level)),
+        dispatch(
+          gameActions.newGame(
+            isLevelConfig(levelConfig) ? levelConfig : game.level,
+          ),
+        ),
       setLevel: (levelConfig) => dispatch(gameActions.setLevel(levelConfig)),
       setLevelBySize: (size) => dispatch(gameActions.setLevelBySize(size)),
       revealCell: (row, col) => dispatch(gameActions.revealCell(row, col)),

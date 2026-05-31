@@ -1,5 +1,5 @@
 import { Board } from './components/Board.jsx'
-import { GameControls } from './components/GameControls.jsx'
+import { ActionToolbar, LevelPicker } from './components/GameControls.jsx'
 import { GameOverModal } from './components/GameOverModal.jsx'
 import { StatusBar } from './components/StatusBar.jsx'
 import { useGameAudio } from './hooks/useAudio.js'
@@ -34,23 +34,9 @@ function App() {
     <>
       <h1>Minesweeper game</h1>
 
+      {/* Control order matches legacy/index.html */}
       <div className="controls">
-        <GameControls
-          level={level}
-          safeCount={meta.safeCount}
-          hasStarted={hasStarted}
-          megaHintIsUsable={meta.megaHintIsUsable}
-          isMegaHintOn={meta.isMegaHintOn}
-          canUndo={canUndo}
-          smiley={smiley}
-          darkModeLabel={darkModeLabel}
-          onSetLevelBySize={actions.setLevelBySize}
-          onMegaHint={actions.activateMegaHint}
-          onSafeClick={actions.useSafeClick}
-          onUndo={actions.undo}
-          onNewGame={actions.newGame}
-          onToggleDark={toggleTheme}
-        />
+        <LevelPicker level={level} onSetLevelBySize={actions.setLevelBySize} />
 
         <StatusBar
           remainingMines={remainingMines}
@@ -61,6 +47,28 @@ function App() {
           isHintOn={meta.isHintOn}
           onActivateHint={actions.activateHint}
         />
+
+        <ActionToolbar
+          safeCount={meta.safeCount}
+          hasStarted={hasStarted}
+          megaHintIsUsable={meta.megaHintIsUsable}
+          isMegaHintOn={meta.isMegaHintOn}
+          canUndo={canUndo}
+          darkModeLabel={darkModeLabel}
+          onMegaHint={actions.activateMegaHint}
+          onSafeClick={actions.useSafeClick}
+          onUndo={actions.undo}
+          onToggleDark={toggleTheme}
+        />
+
+        <button
+          type="button"
+          className="smiley"
+          onClick={() => actions.newGame()}
+          aria-label="New game"
+        >
+          {smiley}
+        </button>
 
         {modeHintMessage && (
           <p className="mode-hint" role="status">

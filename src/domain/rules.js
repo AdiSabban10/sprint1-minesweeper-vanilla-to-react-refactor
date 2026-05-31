@@ -66,7 +66,8 @@ export function hasGameStarted(meta) {
  * @param {import('./types.js').GameMeta} meta
  */
 export function getRemainingMinesCount(level, meta) {
-  return level.mines - meta.shownMinesCount - meta.markedCount
+  const mines = Number(level?.mines) || 0
+  return mines - meta.shownMinesCount - meta.markedCount
 }
 
 /**

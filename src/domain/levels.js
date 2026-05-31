@@ -36,3 +36,26 @@ export const LEVEL_LIST = [LEVELS.beginner, LEVELS.medium, LEVELS.expert]
 export function getLevelBySize(size) {
   return LEVEL_LIST.find((level) => level.size === size) ?? LEVELS.beginner
 }
+
+/**
+ * @param {unknown} value
+ * @returns {value is import('./types.js').LevelConfig}
+ */
+export function isLevelConfig(value) {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof value.size === 'number' &&
+    typeof value.mines === 'number'
+  )
+}
+
+/**
+ * @param {import('./types.js').LevelConfig | undefined} preferred
+ * @param {import('./types.js').LevelConfig | undefined} fallback
+ */
+export function resolveLevel(preferred, fallback = LEVELS.beginner) {
+  if (isLevelConfig(preferred)) return preferred
+  if (isLevelConfig(fallback)) return fallback
+  return LEVELS.beginner
+}

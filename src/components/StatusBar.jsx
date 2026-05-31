@@ -39,7 +39,7 @@ export function StatusBar({
               type="button"
               className="hint-click"
               disabled={hintDisabled}
-              onClick={onActivateHint}
+              onClick={() => onActivateHint()}
               aria-label="Activate hint"
             >
               {HINT}

@@ -8,7 +8,7 @@ import {
   revealCellAndFlood,
   toggleCellMark,
 } from './board.js'
-import { getLevelBySize } from './levels.js'
+import { getLevelBySize, resolveLevel } from './levels.js'
 import {
   checkVictory,
   createInitialGameState,
@@ -371,14 +371,16 @@ function handleToggleMark(state, row, col) {
 export function gameReducer(state, action) {
   switch (action.type) {
     case ACTIONS.NEW_GAME: {
-      const level = action.level ?? state.game.level
+      const level = resolveLevel(action.level, state.game.level)
       return createReducerState(level)
     }
 
     case ACTIONS.SET_LEVEL: {
-      const level =
+      const level = resolveLevel(
         action.level ??
-        (action.size != null ? getLevelBySize(action.size) : state.game.level)
+          (action.size != null ? getLevelBySize(action.size) : undefined),
+        state.game.level,
+      )
       return createReducerState(level)
     }
 
