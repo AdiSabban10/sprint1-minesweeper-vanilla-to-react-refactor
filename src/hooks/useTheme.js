@@ -1,8 +1,17 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-/** Toggles legacy dark mode on `document.body` (`.dark-mode`). */
+/**
+ * Toggles dark mode on `document.body` via `.dark-mode` only
+ * (legacy used both `.dark` on buttons and `.dark-mode` on body — unified in CSS).
+ */
 export function useTheme() {
   const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('dark-mode')
+    }
+  }, [])
 
   const toggleTheme = useCallback(() => {
     setIsDark((prev) => {

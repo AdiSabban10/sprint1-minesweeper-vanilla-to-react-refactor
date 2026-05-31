@@ -44,7 +44,13 @@ export function Cell({
       onClick={() => onReveal(row, col)}
       onContextMenu={handleContextMenu}
       role="gridcell"
-      aria-label={`Cell ${row + 1}, ${col + 1}`}
+      aria-label={
+        cell.isMarked
+          ? `Row ${row + 1} column ${col + 1}, flagged`
+          : cell.isShown || isPeek
+            ? `Row ${row + 1} column ${col + 1}, ${display.trim() || 'empty'}`
+            : `Row ${row + 1} column ${col + 1}, hidden`
+      }
     >
       {display}
     </td>

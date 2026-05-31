@@ -1,26 +1,105 @@
-/* Ported from legacy/css/app.css — keep React UI visually aligned with vanilla app */
+/* Minesweeper — legacy visual design (legacy/css/app.css) + React layout polish */
 
+/* --- Light theme (default) --- */
 body {
   text-align: center;
-  font-family: cursive;
+  font-family: cursive, 'Comic Sans MS', sans-serif;
   background-color: rgba(231, 135, 79, 0.582);
+  color: #1a1a1a;
   margin: 0;
+  min-height: 100vh;
 }
 
+#root {
+  min-height: 100vh;
+  padding-bottom: 1.5rem;
+}
+
+h1 {
+  margin: 0.6em 0 0.35em;
+  font-size: 1.75rem;
+}
+
+.controls {
+  margin-bottom: 0.5em;
+  max-width: 100%;
+}
+
+.game-controls .action-row {
+  margin: 0.3em 0;
+}
+
+footer {
+  margin-top: 1.2em;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+/* --- Buttons (legacy) --- */
 button {
   background-color: rgba(143, 51, 35, 0.281);
   border: 0;
   border-radius: 30%;
-  font-family: cursive;
+  font-family: inherit;
   font-size: 0.6em;
   margin: 0.3em;
   padding: 0.6em;
   cursor: pointer;
+  color: inherit;
+}
+
+button.btn.level[aria-pressed='true'] {
+  background-color: rgba(143, 51, 35, 0.55);
+  font-weight: bold;
 }
 
 .smiley {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   font-size: 1.5em;
+  padding: 0.25em 0.5em;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn.active {
+  outline: 2px solid rgba(238, 235, 33, 0.9);
+  outline-offset: 2px;
+}
+
+/* --- Status / hints --- */
+.hints .hint-click {
+  vertical-align: middle;
+}
+
+.hint-click {
+  background-color: transparent;
+  font-size: 1.2em;
+  min-height: 1.5em;
+  min-width: 1.5em;
+  padding: 0.15em;
+}
+
+.hints-armed .hint-click {
+  outline: 2px solid rgba(238, 235, 33, 0.9);
+  border-radius: 4px;
+}
+
+.mode-hint {
+  font-size: 0.9em;
+  max-width: 26rem;
+  margin: 0.4em auto 0.6em;
+  padding: 0.35em 0.6em;
+  background-color: rgba(238, 235, 33, 0.35);
+  border-radius: 0.5em;
+}
+
+/* --- Board --- */
+.board-container {
+  display: inline-block;
+  margin: 0 auto;
 }
 
 table {
@@ -35,10 +114,15 @@ table {
   border-radius: 30%;
   height: 30px;
   width: 30px;
+  min-width: 30px;
+  min-height: 30px;
   cursor: pointer;
   text-align: center;
   vertical-align: middle;
   user-select: none;
+  font-size: 0.95rem;
+  line-height: 30px;
+  padding: 0;
 }
 
 .shown {
@@ -49,15 +133,24 @@ table {
   background-color: rgba(243, 60, 27, 0.568);
 }
 
-.hint-click {
-  background-color: rgba(0, 0, 0, 0);
-  font-size: 1.2em;
-  height: 10px;
-  width: 20px;
-}
-
 .hint {
   background-color: rgba(238, 235, 33, 0.568);
+}
+
+/* --- Game over --- */
+.game-over {
+  margin: 0.5em auto;
+  padding: 0.25em 1em;
+  max-width: 16rem;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 0.5em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.game-over h3 {
+  margin: 0.5em 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
 }
 
 .hide {
@@ -68,64 +161,38 @@ table {
   background-color: blue;
 }
 
-.game-over h3 {
-  margin: 0.5em 0;
-}
-
-.board-container {
-  display: inline-block;
-}
-
-footer {
-  margin-top: 1em;
-  font-size: 0.9em;
-}
-
-.controls {
-  margin-bottom: 0.5em;
-}
-
-.game-controls .action-row {
-  margin: 0.3em 0;
-}
-
-.hints .hint-click {
-  vertical-align: middle;
-}
-
-button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.btn.active {
-  outline: 2px solid rgba(238, 235, 33, 0.9);
-  outline-offset: 2px;
-}
-
-.hints-armed .hint-click {
-  outline: 2px solid rgba(238, 235, 33, 0.9);
-}
-
-.mode-hint {
-  font-size: 0.9em;
-  max-width: 26rem;
-  margin: 0.4em auto 0.6em;
-  padding: 0.35em 0.6em;
-  background-color: rgba(238, 235, 33, 0.35);
-  border-radius: 0.5em;
-}
-
-.dark-mode .mode-hint {
-  background-color: rgba(238, 235, 33, 0.2);
-}
-
-/* Dark mode — body + buttons (M9 will toggle .dark-mode on document.body) */
-.dark-mode {
+/* --- Dark mode (single class on body — replaces legacy .dark + .dark-mode split) --- */
+body.dark-mode {
   background-color: rgba(0, 0, 0, 0.925);
   color: rgba(255, 255, 255, 0.925);
 }
 
-.dark-mode button.btn {
+body.dark-mode button {
   color: rgba(255, 255, 255, 0.925);
+}
+
+body.dark-mode .game-over {
+  background-color: rgba(40, 40, 40, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+body.dark-mode .mode-hint {
+  background-color: rgba(238, 235, 33, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+body.dark-mode .cell {
+  background-color: rgba(80, 40, 30, 0.85);
+}
+
+body.dark-mode .shown {
+  background-color: rgba(120, 80, 70, 0.85);
+}
+
+body.dark-mode .marked {
+  background-color: rgba(140, 40, 20, 0.85);
+}
+
+body.dark-mode .hint {
+  background-color: rgba(180, 170, 40, 0.75);
 }
