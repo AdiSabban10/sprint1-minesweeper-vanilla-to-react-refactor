@@ -1,0 +1,99 @@
+/* Ported from legacy/css/app.css — keep React UI visually aligned with vanilla app */
+
+body {
+  text-align: center;
+  font-family: cursive;
+  background-color: rgba(231, 135, 79, 0.582);
+  margin: 0;
+}
+
+button {
+  background-color: rgba(143, 51, 35, 0.281);
+  border: 0;
+  border-radius: 30%;
+  font-family: cursive;
+  font-size: 0.6em;
+  margin: 0.3em;
+  padding: 0.6em;
+  cursor: pointer;
+}
+
+.smiley {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1.5em;
+}
+
+table {
+  border-radius: 10%;
+  margin: 1.2em auto;
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+.cell {
+  background-color: rgba(143, 51, 35, 0.568);
+  border-radius: 30%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.shown {
+  background-color: rgba(224, 142, 127, 0.568);
+}
+
+.marked {
+  background-color: rgba(243, 60, 27, 0.568);
+}
+
+.hint-click {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1.2em;
+  height: 10px;
+  width: 20px;
+}
+
+.hint {
+  background-color: rgba(238, 235, 33, 0.568);
+}
+
+.hide {
+  display: none;
+}
+
+.check {
+  background-color: blue;
+}
+
+.game-over h3 {
+  margin: 0.5em 0;
+}
+
+.board-container {
+  display: inline-block;
+}
+
+footer {
+  margin-top: 1em;
+  font-size: 0.9em;
+}
+
+.board-placeholder {
+  font-size: 0.85em;
+  opacity: 0.85;
+  max-width: 22rem;
+  margin: 0.5em auto;
+}
+
+/* Dark mode — body + buttons (M9 will toggle .dark-mode on document.body) */
+.dark-mode {
+  background-color: rgba(0, 0, 0, 0.925);
+  color: rgba(255, 255, 255, 0.925);
+}
+
+.dark-mode button.btn {
+  color: rgba(255, 255, 255, 0.925);
+}

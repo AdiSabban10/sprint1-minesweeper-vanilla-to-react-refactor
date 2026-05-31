@@ -6,6 +6,7 @@ A full-featured Minesweeper game, refactored from vanilla JavaScript into a mode
 
 - **Original app:** [`legacy/`](legacy/) — global state, DOM-driven rendering, single `game.js` module.
 - **Target app:** `src/` (React + Vite) — pure domain logic separated from UI components.
+- **Visual design:** React UI reuses the legacy look ([`legacy/css/app.css`](legacy/css/app.css) → [`src/styles/app.css`](src/styles/app.css)), same class names (`cell`, `shown`, `hint`, etc.).
 
 ## Migration status
 
